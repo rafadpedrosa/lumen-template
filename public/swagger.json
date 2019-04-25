@@ -1,0 +1,417 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "TODO LIST API",
+        "contact": {
+            "name": "Rafael Pedrosa",
+            "url": "https://www.rafadpedrosa.com.br"
+        },
+        "version": "0.1"
+    },
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/lunchs": {
+            "get": {
+                "tags": [
+                    "lunchs"
+                ],
+                "summary": "Busca todos os lunchs paginados",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pFilter"
+                    },
+                    {
+                        "$ref": "#/parameters/pPage"
+                    },
+                    {
+                        "$ref": "#/parameters/pPer_page"
+                    },
+                    {
+                        "$ref": "#/parameters/pSort"
+                    },
+                    {
+                        "$ref": "#/parameters/pColumns"
+                    },
+                    {
+                        "$ref": "#/parameters/pPageName"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna lunchs paginados"
+                    },
+                    "500": {
+                        "description": "Erro inesperado"
+                    }
+                }
+            }
+        },
+        "/api/lunch": {
+            "post": {
+                "tags": [
+                    "lunchs"
+                ],
+                "summary": "Salva lunch",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Lunch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "lunch salvo com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            }
+        },
+        "/api/lunch/{id}": {
+            "get": {
+                "tags": [
+                    "lunchs"
+                ],
+                "summary": "Busca lunch",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "lunch encontrado"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "lunchs"
+                ],
+                "summary": "Altera lunch",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Lunch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "lunch alterado com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "lunchs"
+                ],
+                "summary": "Deleta lunch",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "lunch alterado com sucesso"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            }
+        },
+        "/api/lunch/{id}/edit": {
+            "get": {
+                "tags": [
+                    "lunchs"
+                ],
+                "summary": "Busca lunch para ser editado",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/pAuthorization"
+                    },
+                    {
+                        "$ref": "#/parameters/pId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "lunch encontrado para ser editado"
+                    },
+                    "500": {
+                        "description": "Internal server Error"
+                    }
+                }
+            }
+        },
+        "/api": {
+            "get": {
+                "summary": "Verificar se a aplica\u00e7\u00e3o est\u00e1 funcionando",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An print showing laravel lumen message"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Lunch": {
+            "properties": {
+                "lunch_id": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "name": "Lunch name",
+                "description": "Lunch 1"
+            }
+        },
+        "SWGGeneric": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "name": "test"
+            }
+        },
+        "SWGUserLogin": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "email": "1@1.com",
+                "password": "1"
+            }
+        },
+        "auth": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "email": "User email",
+                "password": "Senha do usu\u00e1rio"
+            }
+        },
+        "auth_api": {
+            "properties": {
+                "api_key": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "example": {
+                "api_key": "api string here"
+            }
+        }
+    },
+    "parameters": {
+        "generic_def": {
+            "name": "generic",
+            "in": "body",
+            "description": "JSON obj",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/SWGGeneric"
+            }
+        },
+        "user_login": {
+            "name": "user",
+            "in": "body",
+            "description": "JSON obj",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/SWGUserLogin"
+            }
+        },
+        "pAuthorization": {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string"
+        },
+        "pEmail": {
+            "name": "email",
+            "in": "body",
+            "required": true,
+            "schema": {
+                "title": "json",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "email": "1@1.com"
+                }
+            },
+            "type": "string"
+        },
+        "pFilter": {
+            "name": "filter",
+            "in": "query",
+            "description": "query string filter",
+            "type": "string"
+        },
+        "pId": {
+            "name": "id",
+            "in": "path",
+            "description": "path - id",
+            "type": "string"
+        },
+        "pPage": {
+            "name": "page",
+            "in": "query",
+            "description": "query string page",
+            "type": "string"
+        },
+        "pPer_page": {
+            "name": "per_page",
+            "in": "query",
+            "description": "query string per_page",
+            "type": "string"
+        },
+        "pSort": {
+            "name": "sort",
+            "in": "query",
+            "description": "query string sort",
+            "type": "string"
+        },
+        "pColumns": {
+            "name": "columns",
+            "in": "query",
+            "description": "query string columns",
+            "type": "string"
+        },
+        "pPageName": {
+            "name": "pageName",
+            "in": "query",
+            "description": "query string page name",
+            "type": "string"
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "scopes": {
+                "scope": "Description of scope."
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "diversos",
+            "description": "Opera\u00e7\u00f5es diversas do sistema",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "config",
+            "description": "Toda a api de config",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "generic",
+            "description": "AJUSTE AQUI",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        },
+        {
+            "name": "users",
+            "description": "users  API description",
+            "externalDocs": {
+                "description": "",
+                "url": ""
+            }
+        }
+    ]
+}
